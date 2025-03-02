@@ -1,6 +1,6 @@
 # NeuralTrack
 
-NeuralTrack is a lightweight logging tool for deep learning training, designed to track loss and gradient updates efficiently without slowing down the training process. It provides easy-to-use logging functionality and visualization tools to help monitor model performance.
+[NeuralTrack](https://github.com/sciencehope/NeuralTrack) is a lightweight logging tool for deep learning training, designed to track loss and gradient updates efficiently without slowing down the training process. It provides easy-to-use logging functionality and visualization tools to help monitor model performance.
 ## Features
 ✅ **Minimal Overhead** – Asynchronous logging ensures training speed is not compromised.  
 ✅ **Loss Tracking** – Logs individual loss components per epoch.  

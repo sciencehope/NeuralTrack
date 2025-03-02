@@ -29,12 +29,13 @@ setup(
     install_requires=[
         "numpy", "matplotlib"
     ],
-    author="",
+    author="Science Hope",
     author_email="",
     description="NeuralTrack is a lightweight logging tool for deep learning training",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="",  # Change to your GitHub repo
+    license="MIT",
+    url="https://github.com/sciencehope/NeuralTrack",  # Change to your GitHub repo
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",

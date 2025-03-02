@@ -3,3 +3,4 @@ dist/
 neuraltrack/__pycache__/
 neuraltrack/logging/__pycache__/
 neuraltrack/visualization/__pycache__/
+neuraltrack.egg-info/
