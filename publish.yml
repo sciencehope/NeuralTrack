@@ -1,0 +1,36 @@
+name: Publish Python Package to PyPI
+
+on:
+  push:
+    branches:
+      - main  # Trigger the workflow when you push to the `main` branch
+    # You can change this to the branch you want to trigger the deployment
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.8'  # Specify the Python version
+
+    - name: Install dependencies
+      run: |
+        pip install --upgrade pip
+        pip install setuptools wheel twine
+
+    - name: Build package
+      run: |
+        python setup.py sdist bdist_wheel
+
+    - name: Upload package to PyPI
+      run: |
+        twine upload dist/*
+      env:
+        PYPI_USERNAME: ${{ secrets.PYPI_USERNAME }}
+        PYPI_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
