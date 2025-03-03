@@ -24,12 +24,17 @@ In your training loop, use the LossLogger to track loss values:
 from neuraltrack.logging.loss_logger import LossLogger
 
 logger = LossLogger("loss_log.json")
-
 for epoch in range(num_epochs):
-    LossLogger.start_epoch()
-    
+    logger.start_epoch()
     for batch in dataloader:
-        loss_dict = {"total_loss": loss_value, "reconstruction_loss": recon_loss}
+        output = Model(input)
+        loss1 = loss1(output)
+        loss2 = loss2(input, output)
+        total_loss = loss1+loss2
+        optimizer.zero_grad()
+        total_loss.backward()
+        optimizer.setp()
+        loss_dict = {"total_loss": total_loss, "loss1": loss1, "loss2":loss2}
         logger.add_batch_loss(loss_dict)
     
     logger.log_epoch_loss(epoch)
@@ -42,11 +47,15 @@ Track gradient statistics every few epochs:
 from neuraltrack.logging.gradient_logger import GradientLogger
 
 grad_logger = GradientLogger("gradient_log.json", log_interval=10)
-
 for epoch in range(num_epochs):
-    optimizer.zero_grad()
-    loss.backward()
-    grad_logger.log_gradients(epoch, model)
+    for batch in dataloader:
+        output = Model(input)
+        loss1 = loss1(output)
+        loss2 = loss2(input, output)
+        total_loss = loss1+loss2
+        optimizer.zero_grad()
+        total_loss.backward()
+        grad_logger.log_gradients(epoch, model)
     optimizer.step()
 
 ```
